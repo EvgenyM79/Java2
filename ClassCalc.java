@@ -1,6 +1,6 @@
 public class ClassCalc {
 
-    public static void calAll(ClassCar[] allCar,  double[][] masVes){
+    public static void calcAll(ClassCar[] allCar,  double[][] masVes){
         for (int i = 0; i < allCar.length; i++) {
             switch (allCar[i].model) {
                 case 100: {
