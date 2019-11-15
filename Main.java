@@ -21,6 +21,7 @@ public class Main {
             }
         }
         ClassCalc.calcAll(allCar, masVes);
+        ClassSort.sortAll(allCar, masVes);
     }
 }
 

@@ -30,10 +30,10 @@ public class ClassCalc {
                 }
             }
         }
-        System.out.println("Расход для легковых авто составил " + masVes[0][3]);
-        System.out.println("Расход для грузовых авто составил " + masVes[1][3]);
-        System.out.println("Расход для посажирских авто составил " + masVes[2][3]);
-        System.out.println("Расход для тяжелой техники (краны) составил " + masVes[3][3]);
+        System.out.println("Расход для легковых авто(C100) составил " + masVes[0][3]);
+        System.out.println("Расход для грузовых авто(C200) составил " + masVes[1][3]);
+        System.out.println("Расход для посажирских авто(C300) составил " + masVes[2][3]);
+        System.out.println("Расход для тяжелой техники (краны)(C400) составил " + masVes[3][3]);
         System.out.println("Общий расход составил " + (masVes[0][3] + masVes[1][3] + masVes[2][3] + masVes[3][3]));
         double minSum = masVes[0][3], maxSum = masVes[0][3];
         int minIndex = 0, maxIndex = 0;
@@ -47,7 +47,7 @@ public class ClassCalc {
                 maxIndex = i;
             }
         }
-        System.out.println("Минимальный расход для модели авто " + allCar[minIndex].model + " равен " + masVes[minIndex][3]);
-        System.out.println("Максимальный расход для модели авто " + allCar[maxIndex].model + " равен " + masVes[maxIndex][3]);
+        System.out.println("Минимальный расход для модели авто C" + allCar[minIndex].model + " равен " + masVes[minIndex][3]);
+        System.out.println("Максимальный расход для модели авто C" + allCar[maxIndex].model + " равен " + masVes[maxIndex][3]);
     }
 }
