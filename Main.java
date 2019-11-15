@@ -20,7 +20,7 @@ public class Main {
                 //System.out.println(allCar[i].model + " " + allCar[i].gosNum + " " + allCar[i].km + " " + allCar[i].pBigAvto + " длина " + masParCar.length);
             }
         }
-        ClassCalc.calAll(allCar, masVes);
+        ClassCalc.calcAll(allCar, masVes);
     }
 }
 
