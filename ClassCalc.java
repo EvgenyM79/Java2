@@ -1,53 +1,68 @@
 public class ClassCalc {
 
-    public static void calcAll(ClassCar[] allCar,  double[][] masVes){
-        for (int i = 0; i < allCar.length; i++) {
-            switch (allCar[i].model) {
+    public static int n;
+
+    public static void calcAll(TempCar[] tempAllCar){
+        double[] allkm = {0,0,0,0};
+        TempCar chCar = new TempCar(0, "",0,0,0,0);
+        n = tempAllCar.length -1;
+        for (int i = 0; i < n ; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (tempAllCar[i].model == tempAllCar[j].model && tempAllCar[i].gosNum.equals(tempAllCar[j].gosNum) && tempAllCar[i].model > 0 && tempAllCar[j].model > 0) {
+                    tempAllCar[i].km += tempAllCar[j].km;
+                    tempAllCar[i].pBigAvto += tempAllCar[j].pBigAvto;
+                    tempAllCar[j] = tempAllCar[n];
+                    tempAllCar[n] = null;
+                    n--;
+                }
+            }
+
+            switch (tempAllCar[i].model) {
                 case 100: {
-                    //System.out.println(allCar[i].model + " " + allCar[i].gosNum + " " + allCar[i].km + " " + allCar[i].pBigAvto + " длина = 3");
-                    masVes[0][3] += allCar[i].km * masVes[0][1] * masVes[0][2] / 100;
-                    //System.out.println(masVes[0][3]);
+                    //System.out.println(tempAllCar[i].model + " " + tempAllCar[i].gosNum + " " + tempAllCar[i].km + " " + tempAllCar[i].pBigAvto + " длина = 3");
+                    allkm[0]+= tempAllCar[i].km * tempAllCar[i].prkm * tempAllCar[i].cena / 100;
+                    //System.out.println(allkm[0]);
                     break;
                 }
                 case 200: {
-                    //System.out.println(allCar[i].model + " " + allCar[i].gosNum + " " + allCar[i].km + " " + allCar[i].pBigAvto + " длина = 4");
-                    masVes[1][3] += allCar[i].km * masVes[1][1] * masVes[1][2] / 100;
-                    //System.out.println(masVes[1][3]);
+                    //System.out.println(tempAllCar[i].model + " " + tempAllCar[i].gosNum + " " + tempAllCar[i].km + " " + tempAllCar[i].pBigAvto + " длина = 4");
+                    allkm[1]+= tempAllCar[i].km * tempAllCar[i].prkm * tempAllCar[i].cena / 100;
+                    //System.out.println(allkm[1]);
                     break;
                 }
                 case 300: {
-                    //System.out.println(allCar[i].model + " " + allCar[i].gosNum + " " + allCar[i].km + " " + allCar[i].pBigAvto + " длина = 4");
-                    masVes[2][3] += allCar[i].km * masVes[2][1] * masVes[2][2] / 100;
-                    //System.out.println(masVes[2][3]);
+                    //System.out.println(tempAllCar[i].model + " " + tempAllCar[i].gosNum + " " + tempAllCar[i].km + " " + tempAllCar[i].pBigAvto + " длина = 4");
+                    allkm[2]+= tempAllCar[i].km * tempAllCar[i].prkm * tempAllCar[i].cena / 100;
+                    //System.out.println(allkm[2]);
                     break;
                 }
                 case 400: {
-                    //System.out.println(allCar[i].model + " " + allCar[i].gosNum + " " + allCar[i].km + " " + allCar[i].pBigAvto + " длина = 4");
-                    masVes[3][3] += allCar[i].km * masVes[3][1] * masVes[3][2] / 100;
-                    //System.out.println(masVes[3][3]);
+                    //System.out.println(tempAllCar[i].model + " " + tempAllCar[i].gosNum + " " + tempAllCar[i].km + " " + tempAllCar[i].pBigAvto + " длина = 4");
+                    allkm[3]+= tempAllCar[i].km * tempAllCar[i].prkm * tempAllCar[i].cena / 100;
+                    //System.out.println(allkm[3]);
                     break;
-
                 }
             }
         }
-        System.out.println("Расход для легковых авто(C100) составил " + masVes[0][3]);
-        System.out.println("Расход для грузовых авто(C200) составил " + masVes[1][3]);
-        System.out.println("Расход для посажирских авто(C300) составил " + masVes[2][3]);
-        System.out.println("Расход для тяжелой техники (краны)(C400) составил " + masVes[3][3]);
-        System.out.println("Общий расход составил " + (masVes[0][3] + masVes[1][3] + masVes[2][3] + masVes[3][3]));
-        double minSum = masVes[0][3], maxSum = masVes[0][3];
+        System.out.println("Расход для легковых авто(C100) составил " + allkm[0]);
+        System.out.println("Расход для грузовых авто(C200) составил " + allkm[1]);
+        System.out.println("Расход для посажирских авто(C300) составил " + allkm[2]);
+        System.out.println("Расход для тяжелой техники (краны)(C400) составил " + allkm[3]);
+        System.out.println("Общий расход составил " + (allkm[0] +allkm[1] + allkm[2] + allkm[3]));
+        double minSum = allkm[0], maxSum = 0;
         int minIndex = 0, maxIndex = 0;
         for (int i = 1; i < 4; i++){
-            if (masVes[i][3] < minSum ){
-                minSum = masVes[i][3];
+            if (allkm[i] < minSum ){
+                minSum = allkm[i] ;
                 minIndex = i;
             }
-            if (masVes[i][3] > maxSum ){
-                maxSum = masVes[i][3];
+            if (allkm[i] > maxSum ){
+                maxSum = allkm[i];
                 maxIndex = i;
             }
         }
-        System.out.println("Минимальный расход для модели авто C" + allCar[minIndex].model + " равен " + masVes[minIndex][3]);
-        System.out.println("Максимальный расход для модели авто C" + allCar[maxIndex].model + " равен " + masVes[maxIndex][3]);
+        System.out.println("Минимальный расход для модели авто C" + tempAllCar[minIndex].model + " равен " + allkm[minIndex]);
+        System.out.println("Максимальный расход для модели авто C" + tempAllCar[maxIndex].model + " равен " + allkm[maxIndex]);
+        Main.n = n;
     }
 }

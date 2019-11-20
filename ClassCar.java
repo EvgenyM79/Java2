@@ -3,19 +3,18 @@ public class ClassCar {
     public int model, km, pBigAvto;
     public String gosNum;
 
-    public ClassCar() {
-    }
+    /*ClassCar(TempCar[] tempAllCar) {
+        this.model = tempAllCar[0].model;
+    }*/
 
-    ClassCar(int model, String gosNum, int km){
-        this.model = model;
-        this.gosNum = gosNum;
-        this.km = km;
+    ClassCar(TempCar tempCar){
+        this.model = tempCar.model;
+        this.gosNum = tempCar.gosNum;
+        this.km = tempCar.km;
+        //this.km = km;
+        this.pBigAvto = tempCar.pBigAvto;
+        /*if (tempCar.pBigAvto > 0) {
+            this.pBigAvto = tempCar.pBigAvto;
+        }*/
     }
-    ClassCar(int model, String gosNum, int km, int pBigAvto){
-        this.model = model;
-        this.gosNum = gosNum;
-        this.km = km;
-        this.pBigAvto = pBigAvto;
-    }
-
 }
