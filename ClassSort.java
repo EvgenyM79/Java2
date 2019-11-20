@@ -35,6 +35,6 @@ public class ClassSort {
         for (int i = 0; i < num; i++) {
             System.out.println("М:"+ tempAllCar[i].model + " Гос№:" + tempAllCar[i].gosNum + " Пр: " + tempAllCar[i].km +  " расход:" + tempAllCar[i].prkm + " цена:" + tempAllCar[i].cena + " доп пр: " + tempAllCar[i].pBigAvto);
         }
-        System.out.println("Не удалосб уменьшить кол-во объектов с " +  tempAllCar.length + " до " + n);
+        //System.out.println("Не удалосб уменьшить кол-во объектов с " +  tempAllCar.length + " до " + n);
     }
 }

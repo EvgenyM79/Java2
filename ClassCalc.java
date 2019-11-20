@@ -1,19 +1,26 @@
 public class ClassCalc {
 
-    public static int n;
+    public static int n, doubleCar;
 
     public static void calcAll(TempCar[] tempAllCar){
         double[] allkm = {0,0,0,0};
         TempCar chCar = new TempCar(0, "",0,0,0,0);
-        n = tempAllCar.length -1;
+        n = tempAllCar.length;
+        doubleCar = 0;
         for (int i = 0; i < n ; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (tempAllCar[i].model == tempAllCar[j].model && tempAllCar[i].gosNum.equals(tempAllCar[j].gosNum) && tempAllCar[i].model > 0 && tempAllCar[j].model > 0) {
+                    System.out.println(tempAllCar[i].km);
                     tempAllCar[i].km += tempAllCar[j].km;
+                    System.out.println(tempAllCar[i].km);
                     tempAllCar[i].pBigAvto += tempAllCar[j].pBigAvto;
-                    tempAllCar[j] = tempAllCar[n];
-                    tempAllCar[n] = null;
-                    n--;
+                    tempAllCar[j].model = 0;
+                    tempAllCar[j].km = 0;
+                    tempAllCar[j].pBigAvto = 0;
+
+                    //tempAllCar[j] = tempAllCar[n];
+                    //tempAllCar[n] = null;
+                    doubleCar ++;
                 }
             }
 
@@ -63,6 +70,6 @@ public class ClassCalc {
         }
         System.out.println("Минимальный расход для модели авто C" + tempAllCar[minIndex].model + " равен " + allkm[minIndex]);
         System.out.println("Максимальный расход для модели авто C" + tempAllCar[maxIndex].model + " равен " + allkm[maxIndex]);
-        Main.n = n;
+        Main.n = n - doubleCar;
     }
 }

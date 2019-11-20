@@ -39,7 +39,15 @@ public class Main {
         }
         ClassCalc.calcAll(tempAllCar);
         System.out.println("Число объектов Car  после сложение Car с одиноковым номером и моделью = " +  n);
-        ClassSort.sortAll(tempAllCar,n);
+        //ClassSort.sortAll(tempAllCar,n);
+
+
+        TempCar[] tempAllCarNotDouble = new TempCar[n];
+        System.out.println(n);
+        for (int i = 0; i < n; i++) {
+           tempAllCarNotDouble[i] = tempAllCar[i];
+         }
+        ClassSort.sortAll(tempAllCarNotDouble, n);
     }
 }
 
