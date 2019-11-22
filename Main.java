@@ -16,7 +16,14 @@ public class Main {
         System.out.println("Изменение занчения на 55 в позиции 2");
         masNew.replaceIntInPosition(55,2);
         masNew.show();
-
-
+        masNew.sortInt("max");
+        masNew.sortInt("min");
+        System.out.println("Исходный массив");
+        masNew.show();
+        System.out.println("Найден максимальный элемент " + masNew.findInt("max"));;
+        System.out.println("Найден минимальный элемент " + masNew.findInt("min"));;
+        System.out.println("Заполнение массива одинаковыми элементами 7");;
+        masNew.replaceAllInt(7);
+        masNew.show();
     }
 }
