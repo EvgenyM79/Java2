@@ -5,93 +5,132 @@ public class ListNode {
         private Node next;
         private Node prev;
 
-        public Node(int val) {
+        public Node(int val){
             this.value = val;
         }
 
-        // Вывод списка
+        // Вывод всего списка
         public void displayNode() {
             System.out.print(value + " ");
         }
     }
 
-    //both should be private, nobody outside should see the node class
     public Node first = null;
     public Node last = null;
-    public Node temp = null;
-    public int size = 0;
+    public Node tempForReplace = null;
+    // public int size = 0;
 
     public void addFirst(int val) {
         Node newNode = new Node(val);
+        newNode.next = null;
+        newNode.prev = null;
+        System.out.println("Добавление " + val + " в начало списка");
         if (isEmpty()) {
-            newNode.next = null;
-            newNode.prev = null;
             first = newNode;
             last = newNode;
-            System.out.println("newNode " + newNode);
-            System.out.println("newNode.value " + newNode.value);
-            System.out.println("newNode.next " + newNode.next);
-            System.out.println("first" + first);
-            System.out.println("last " + last);
-        } else {
-            System.out.println("newNode.value " + newNode.value);
-            System.out.println("first.prev " + first.prev);
-            System.out.println("newNode " + newNode);
-            System.out.println("newNode.next " + newNode.next);
-            System.out.println("newNode.value" + newNode.value);
-            System.out.println("first" + first);
-            System.out.println("last " + last);
-            first.next = newNode;
+        }
+        else{
+            first.prev = newNode;
             newNode.next = first;
             first = newNode;
-            System.out.println("newNode " + newNode);
-            System.out.println("newNode.value " + newNode.value);
-            System.out.println("newNode.next " + newNode.next);
-            System.out.println("newNode.value" + newNode.value);
-            System.out.println("first" + first);
-            System.out.println("last " + last);
         }
     }
 
     public void addLast(int val) {
         Node newNode = new Node(val);
+        System.out.println("Добавление " + val + " в конец списка");
         if (isEmpty()) {
-            newNode.next = null;
-            newNode.prev = null;
             first = newNode;
             last = newNode;
 
         } else {
-            first.prev = newNode;
-            newNode.next = first;
-            newNode.prev = null;
-            first = newNode;
-            last.prev = newNode;
-            newNode.next = null;
             last.next = newNode;
             newNode.prev = last;
+            last = newNode;
         }
     }
+
+    public void addBetween(int val, int place) {
+        Node newNode = new Node(val);
+        Node temp = first;
+        System.out.println("Добавление " + val + " в позицию " + place);
+        int size = 0;
+        if (isEmpty()) {
+            first = temp;
+            last = temp;
+        }
+        else{
+            while (temp != null) {
+                if (size == place-1) {
+                    temp.next.prev = newNode;
+                    newNode.next = temp.next.next.prev;
+                    temp.next = newNode;
+                    newNode.prev = temp;
+                }
+                temp = temp.next;
+                size ++;
+            }
+        }
+    }
+
+    public void sortList(String how) {
+        Node temp = first;
+        boolean still = false;
+        int tempInt = 0;
+        System.out.println("Сортировка к " + how);
+        do {
+            if (temp.value < temp.next.value && how.equals("min") || temp.value > temp.next.value && how.equals("max")) {
+                //Сортировка по значению к мин.
+                tempInt = temp.value;
+                temp.value = temp.next.value;
+                temp.next.value = tempInt;
+               still = true;
+            }
+            if (still) {
+                temp = first;
+                still = false;
+                tempInt = 0;
+            }
+            else {
+                temp = temp.next;
+                tempInt ++;
+            }
+        }
+        while (temp != last);
+    }
+
+
+    public void removePosition(int place) {
+        Node temp = first;
+        int size = 0;
+        while (temp != null) {
+            if (size == place) {
+                temp.prev.next = temp.next;
+                temp.next.prev = temp.prev;
+                System.out.println("Удалено " + temp.value + " в позиции " + place);
+            }
+            temp = temp.next;
+            size ++;
+        }
+    }
+
 
     public boolean isEmpty() {
         return (first == null);
     }
 
     public void displayList() {
-        Node current = first;
-        size = 0;
-        while (current != null) {
-            current.displayNode();
-            current = current.next;
-            size++;
+        Node temp = first;
+        while (temp != null) {
+            temp.displayNode();
+            temp = temp.next;
         }
-        System.out.println(" Число элементов равно " + size);
+        System.out.println();
     }
 
     public void removeFirst() {
         if (!isEmpty()) {
             Node temp = first;
-
             if (first.next == null) {
                 first = null;
                 last = null;
@@ -99,15 +138,13 @@ public class ListNode {
                 first = first.next;
                 first.prev = null;
             }
-            System.out.println(temp.value + " удалено");
+            System.out.println("С начала(списка) удалено " + temp.value);
         }
     }
 
     public void removeLast() {
         Node temp = last;
-
         if (!isEmpty()) {
-
             if (first.next == null) {
                 first = null;
                 last = null;
@@ -116,6 +153,6 @@ public class ListNode {
                 last.next = null;
             }
         }
-        System.out.println(temp.value + " удалено");
+        System.out.println("С конца удалено " + temp.value);
     }
 }
