@@ -12,7 +12,10 @@ public class MyLinkedList {
         // Вывод всего списка
 
         public void displayNode() {
-             System.out.print(value + ", ");
+            if (value.equals(last.toString()))
+                System.out.print(value);
+            else
+                System.out.print(value + ", ");
         }
 
         public String toString(){
